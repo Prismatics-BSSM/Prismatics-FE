@@ -1,0 +1,50 @@
+.App{
+    background-color: #EAEFEF;
+    font-family: "Pretendard";
+    display: flex;
+    align-items: flex-start;
+}
+
+.left{
+    margin: 10px;
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: #fafafa;
+    width: 200px;
+    height: 760px;
+}
+
+
+
+.log-pri{
+    display: flex;
+    align-items: center;
+
+}
+
+.left img{
+    width: 40px;
+    height: 40px;
+
+    margin-right: 8px;
+}
+
+.title{
+    color: #575B69;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.ElementTable-div p{
+    padding-top: 85px;
+    padding-bottom: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px; 
+    padding: 10px 20px; 
+}

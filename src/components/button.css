@@ -1,0 +1,51 @@
+.elT-div{
+    margin-bottom: 34px;
+
+    background-color: #fafafa;
+    border-radius: 10px;
+    display: flex;            
+    align-items: center;   
+
+    width: 190px;
+    height: 40px;
+}
+
+.elT-div:hover{
+    background-color: #ffffff;
+}
+
+.elT-icon{
+    margin-right: 4px;
+    margin-left: 10px;
+}
+
+.elT-div button{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+.el-div{
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+
+    width: 190px;
+    height: 40px;
+}
+
+.el-div:hover{
+    background-color: #ffffff;
+}
+
+.el-icon{
+    margin-right: 4px;
+    margin-left: 10px;
+}
+
+.el-div button{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
