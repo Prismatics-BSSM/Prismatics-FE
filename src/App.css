@@ -6,9 +6,9 @@
 }
 
 .left{
-    margin: 10px;
+    margin: 10px 8px;
     border-radius: 20px;
-    padding: 10px 25px;
+    padding: 2px 28px;
     background-color: #fafafa;
     width: 200px;
     height: 760px;
@@ -19,12 +19,12 @@
 .log-pri{
     display: flex;
     align-items: center;
-
+    padding-bottom: 50px;
 }
 
 .left img{
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
 
     margin-right: 8px;
 }
@@ -32,19 +32,20 @@
 .title{
     color: #575B69;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 22px;
 }
 
 .ElementTable-div p{
-    padding-top: 85px;
+    padding-top: 30px;
     padding-bottom: 0;
-    font-size: 24px;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .main{
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 10px; 
+    margin-bottom: 0; 
+    margin-top: 0;
     padding: 10px 20px; 
 }

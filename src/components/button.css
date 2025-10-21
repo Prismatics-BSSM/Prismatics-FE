@@ -1,7 +1,6 @@
 .elT-div{
+    background-color: #f8f8f8;
     margin-bottom: 34px;
-
-    background-color: #fafafa;
     border-radius: 10px;
     display: flex;            
     align-items: center;   
@@ -11,7 +10,7 @@
 }
 
 .elT-div:hover{
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 .elT-icon{
@@ -36,7 +35,7 @@
 }
 
 .el-div:hover{
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 .el-icon{

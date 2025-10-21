@@ -5,10 +5,10 @@
   font-family: "Pretendard", sans-serif;
   border-collapse: separate; 
   border-spacing: 10px;
-  padding: 60px 96px;
+  padding: 60px 120px;
 
-  height: 400px;
-  width: 1100px;
+  height: 620px;
+  width: 1140px;
 }
 
 .element-table {
@@ -16,13 +16,12 @@
 }
 .element-text::selection {
   background-color: rgba(87, 91, 105, 0.7);
-  color: #fff;
 }
 
 /* 원소 공통 스타일 */
 .element-table td {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     text-align: center;
     vertical-align: middle;
     font-weight: bold;
@@ -33,11 +32,12 @@
 /* 원소 있는 칸 */
 .element-table td.filled {
     background-color: #575B69;
-    color: white;
+    color: #ffff;
 }
 
-.element-tabel td:hover{
-  background-color: #878A92;
+.element-table td.filled:hover{
+    background-color: #2A2C31;
+    color: #fafafa;
 }
 
 .element-text {
