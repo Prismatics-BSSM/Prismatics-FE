@@ -1,32 +1,31 @@
 .App{
     background-color: #EAEFEF;
-    font-family: "Pretendard";
+    font-family: "Pretendard", sans-serif; 
     display: flex;
     align-items: flex-start;
+    height: 832px;
 }
 
 .left{
-    margin: 10px 8px;
+    margin: 10px 10px;
     border-radius: 20px;
-    padding: 2px 28px;
+    padding: 2px 24px;
     background-color: #fafafa;
-    width: 200px;
-    height: 760px;
+    width: 170px;
+    height: 810px;
 }
-
-
 
 .log-pri{
     display: flex;
     align-items: center;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
 }
 
 .left img{
     width: 44px;
     height: 44px;
 
-    margin-right: 8px;
+    margin-right: 14px;
 }
 
 .title{
@@ -35,17 +34,14 @@
     font-size: 22px;
 }
 
+.main{
+    padding: 10px 20px;
+    margin-bottom: 0;
+}
+
 .ElementTable-div p{
     padding-top: 30px;
     padding-bottom: 0;
     font-size: 25px;
     font-weight: bold;
-}
-
-.main{
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 0; 
-    margin-top: 0;
-    padding: 10px 20px; 
 }

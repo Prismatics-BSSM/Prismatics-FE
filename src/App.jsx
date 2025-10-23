@@ -12,9 +12,7 @@ function App() {
         <p className='title'>Prismatics</p>
         </div>
         <Button/>
-
-        
-      </div>
+        </div>
 
       <div className='main'>
         <div className='search'>

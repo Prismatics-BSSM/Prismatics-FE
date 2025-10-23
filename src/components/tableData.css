@@ -2,23 +2,21 @@
   background-color: #fafafa;
   border-radius: 20px;
   text-align: center;
-  font-family: "Pretendard", sans-serif;
   border-collapse: separate; 
   border-spacing: 10px;
-  padding: 60px 120px;
+  padding: 60px 100px;
 
-  height: 620px;
-  width: 1140px;
+  height: 660px;
+  width: 1160px;
 }
 
 .element-table {
   border-collapse: collapse;
 }
-.element-text::selection {
-  background-color: rgba(87, 91, 105, 0.7);
+.element-table td.filled::selection {
+  background-color: #2A2C31;
 }
 
-/* 원소 공통 스타일 */
 .element-table td {
     width: 40px;
     height: 40px;
@@ -29,22 +27,16 @@
     border-radius: 10px;
 }
 
-/* 원소 있는 칸 */
 .element-table td.filled {
     background-color: #575B69;
     color: #ffff;
 }
 
 .element-table td.filled:hover{
-    background-color: #2A2C31;
+    background-color: #7E8086;
     color: #fafafa;
 }
 
 .element-text {
     font-size: 14px;
-}
-
-.element-text::selection {
-  background-color: rgba(87, 91, 105, 0.7);
-  color: #fff;
 }

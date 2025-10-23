@@ -5,7 +5,7 @@
     display: flex;            
     align-items: center;   
 
-    width: 190px;
+    width: 170px;
     height: 40px;
 }
 
@@ -14,14 +14,14 @@
 }
 
 .elT-icon{
-    margin-right: 4px;
+    margin-right: 8px;
     margin-left: 10px;
 }
 
 .elT-div button{
     background-color: transparent;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .el-div{
@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
 
-    width: 190px;
+    width: 170px;
     height: 40px;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .el-icon{
-    margin-right: 4px;
+    margin-right: 8px;
     margin-left: 10px;
 }
 
