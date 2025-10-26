@@ -1,0 +1,52 @@
+.App{
+    background-color: #EAEFEF;
+    font-family: "Pretendard", sans-serif; 
+    display: flex;
+    align-items: flex-start;
+    height: 832px;
+}
+
+.main{
+    padding: 10px 20px;
+    margin-bottom: 0;
+}
+
+.p-button {
+    display: flex;
+    align-items: center;           
+    justify-content: space-between; 
+    padding: 50px 10px 20px 10px;    
+    width: 100%;
+}
+
+.combin-page .p-button {
+    justify-content: space-between;
+}
+
+.ElementTable-div p {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;                    
+    padding: 0;                    
+    line-height: 1;                
+}
+
+.combin-b {
+    display: flex;        
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: #93A0B7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+
+    margin-right: 10px;
+}
+
+.combin-b:hover{
+    background-color: #575B69;
+}

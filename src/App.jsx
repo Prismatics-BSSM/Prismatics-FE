@@ -1,34 +1,19 @@
-import './App.css';
-import TableData from './components/tableData';
-import Search from './components/Search';
-import Button from './components/button';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useRef } from 'react';
+import Main from './pages/Main';
+import Combin from './pages/Combin';
+import './style/combin.css';
 
-function App() {
-  return (
-    <div className="App">
-      <div className="left">
-        <div className='log-pri'>
-        <img src='/icon.png' alt='log'></img>
-        <p className='title'>Prismatics</p>
-        </div>
-        <Button/>
-        </div>
-
-      <div className='main'>
-        <div className='search'>
-          <Search></Search>
-        </div>
-          
-
-        <div className='ElementTable-div'>
-          <p>주기율표</p>
-          <TableData></TableData>
-        </div>
-      </div>
-      
-    </div>
-  );
+function App(){
+    return(
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/Main" element={<Main />} />      {/* 홈 페이지 */}
+                <Route path="/Combin" element={<Combin />} /> {/* 소개 페이지 */}
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App;
-
+export default App; 

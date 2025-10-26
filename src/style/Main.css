@@ -1,0 +1,34 @@
+.App{
+    background-color: #EAEFEF;
+    font-family: "Pretendard", sans-serif; 
+    display: flex;
+    align-items: flex-start;
+    height: 832px;
+}
+
+.main{
+    padding: 10px 20px;
+    margin-bottom: 0;
+}
+
+.p-button {
+    display: flex;
+    align-items: center;           
+    justify-content: space-between;    
+    width: 100%;
+}
+
+
+
+.main-page .p-button:after {
+    content: "";
+    width: 170px; 
+    height: 40px;  
+}
+
+.ElementTable-div p {
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 10px;                   
+    line-height: 1;                
+}

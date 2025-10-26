@@ -1,19 +1,33 @@
-import './button.css';
+import './left.css'
+import { useNavigate } from 'react-router-dom';
 
-export default function Button() {
-  return (
-    <div className="button-div">
-        <div className='elT-div'>
-            <ButtonelT/>
-            <button>주기율표</button>   
+
+export default function Left() {
+    const navigate = useNavigate();
+
+    return (
+        <div className='Left'>
+            <div className='log-pri'>
+            <img src='/icon.png' alt='log'></img>
+            <p className='title'>Prismatics</p>
+            </div>
+
+            <div className="button-div">
+            <div className='elT-div' onClick={() => navigate('/Main')}>
+                <ButtonelT></ButtonelT>
+                <button>
+                    주기율표</button>   
+            </div>
+            <div className='el-div' onClick={() => navigate('/Combin')}>
+                <Buttonel></Buttonel>
+                <button>
+                원소 조합</button>
+            </div>
         </div>
-        <div className='el-div'>
-            <Buttonel/>
-            <button>원소 조합</button>
         </div>
-    </div>
-  );
+    );
 }
+
 
 function ButtonelT(){
     return(
