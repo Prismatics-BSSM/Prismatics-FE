@@ -27,16 +27,20 @@
     border-radius: 10px;
 }
 
+.ot{
+  background-color: #575B69 !important;
+}
+
 .element-table td.filled {
-    background-color: #575B69;
-    color: #ffff;
+  background-color: #575B69;
+  color: #ffff;
 }
 
 .element-table td.filled:hover{
-    background-color: #7E8086;
-    color: #fafafa;
+  background-color: #7E8086;
+  color: #fafafa;
 }
 
 .element-text {
-    font-size: 14px;
+  font-size: 14px;
 }
