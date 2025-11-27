@@ -2,26 +2,61 @@ import Left from '../components/left';
 import TableData from '../components/tableData';
 import Search from '../components/Search';
 import '../style/combin.css'
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import elementData from '../components/elementData';
+import { useLocation } from 'react-router-dom' 
 
-export default function Main() {
+
+export default function Combin() {
+  const navigate = useNavigate();
+  const [selectedElements, setSelectedElements] = useState([]);  
+
+  const location = useLocation();
+  const { symbol, atomicNumber } = location.state || {}; 
+  const element = elementData.find(
+    el => el.symbol === symbol || el.atomicNumber === atomicNumber
+  );
+
+
+
   return (
-    <div className='App combin-page'>
+    <div className='Combin'>
       <Left></Left>
-        <div className='main'>
-          <div className='search'>
-            <Search></Search>
+      <div className='main'>
+        <div className='search'>
+          <Search></Search>
+        </div>
+
+        <div className='ElementTable-div-c'>
+          <div className='p-button'>
+            <p>주기율표</p>
+
+            <button
+              className='combin-b'
+              onClick={() => {
+                if (selectedElements.length === 0) {
+                  alert("원소를 선택하세요!");
+                  return;
+                }
+
+                  navigate('/CombinElement', {
+                    state: {
+                    elements: selectedElements
+                    }
+                  });
+              }}
+            >
+              조합하기
+            </button>
           </div>
 
-
-          <div className='ElementTable-div'>
-            <div className='p-button'>
-              <p>주기율표</p>
-              <button className='combin-b'>조합하기</button>
-            </div>
-            <TableData></TableData>
+          <TableData
+            page="combin"
+            onSelect={(list) => setSelectedElements(list)}   
+          />
         </div>
       </div>
     </div>
   );
 }
- 

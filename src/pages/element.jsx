@@ -1,28 +1,66 @@
-import '../style/Main.css'
-import ElementI from '../components/elementT ';
+import '../style/Element.css'
+import { useLocation } from 'react-router-dom';
+import InElement from '../components/InElement';
+import InSpectrum from '../components/InSpectrum';
+import InElementP from '../components/InElementP'
+import EnergyLevel from '../components/EnergyLevel';
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-export default function element() {
-    
-    return (
-        <div className='App'>
-            <div className='element-p'>
+export default function Element({page}) {
+    const location = useLocation();
+    const { symbol, name, atomicNumber } = location.state;
+    const [isModalOpen, setModalOpen] = useState(false);
+    const navigate = useNavigate();
 
-            </div>
-            <div className='element-div'>
-                <ElementI></ElementI>
-                <Question></Question>
+    const [mode, setMode] = useState("element"); 
+    const [spectrumType, setSpectrumType] = useState(null);
+
+    function handleElectronMove(type) {
+        setSpectrumType(type);
+        setMode("spectrum");
+    }
+
+    return (
+        <div className='Element'>
+            <div className='element-all'>
+                <div className='elementBox'>
+                    <div className='elementp'>
+                        <InElementP/>
+                    </div>
+                    <div className='in_'>
+                        {mode === "element" && (
+                            <InElement onElectronMove={handleElectronMove} />
+                        )}
+                        
+                        {mode === "spectrum" && spectrumType && (
+                            <InSpectrum 
+                                type={spectrumType} 
+                                onClose={() => {
+                                    setMode("element");
+                                    setSpectrumType(null);
+                                }}
+                            />
+                        )}
+                    </div>
+                </div>
+                <div className='del-div'
+                    onClick={() => {
+                        navigate('/Main');
+                    }}
+                >
+                    <Del/>  
+                </div>
             </div>
         </div>
     );
 }
- 
-function Question() {
+
+function Del() {
     return(
-        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.1715 32.6913C9.77393 31.6597 6.34026 28.2261 5.30872 23.8285C4.56376 20.6526 4.56376 17.3474 5.30872 14.1715C6.34025 9.77393 9.77393 6.34025 14.1715 5.30872C17.3474 4.56376 20.6526 4.56376 23.8285 5.30872C28.2261 6.34025 31.6597 9.77393 32.6913 14.1715C33.4362 17.3474 33.4362 20.6526 32.6913 23.8285C31.6597 28.2261 28.2261 31.6597 23.8285 32.6913C20.6526 33.4362 17.3474 33.4362 14.1715 32.6913Z" stroke="#363853" stroke-width="1.5"/>
-        <circle cx="18.9998" cy="24.5417" r="1.58333" fill="#363853"/>
-        <path d="M15.8335 15.8333V15.0417C15.8335 13.2928 17.2513 11.875 19.0002 11.875C20.7491 11.875 22.1668 13.2928 22.1668 15.0417V15.2338C22.1668 16.1246 21.813 16.9789 21.1831 17.6088L19.0002 19.7917" stroke="#363853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.93198 20.2959L20.2959 9.93198M9.93198 9.93198L20.2959 20.2959" stroke="#333446" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M1.30872 10.1715C2.34026 5.77393 5.77393 2.34025 10.1715 1.30872C13.3474 0.563759 16.6526 0.56376 19.8285 1.30872C24.2261 2.34026 27.6597 5.77393 28.6913 10.1715C29.4362 13.3474 29.4362 16.6526 28.6913 19.8285C27.6597 24.2261 24.2261 27.6597 19.8285 28.6913C16.6526 29.4362 13.3474 29.4362 10.1715 28.6913C5.77393 27.6597 2.34026 24.2261 1.30872 19.8285C0.563759 16.6526 0.563759 13.3474 1.30872 10.1715Z" stroke="#363853" strokeWidth="1.5"/>
         </svg>
     )
 }

@@ -1,0 +1,39 @@
+.ElementCard{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.ElementCardName{
+    background-color: #F3F3F3;
+    width: 55px;
+    height: 55px;
+
+    border-radius: 12px;
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+
+    padding: 14px;
+}
+
+.ElementCardName:hover{
+    background-color: #e1e1e1;
+}
+
+.ElementCardName::selection{
+    background-color: #E9F3F3;
+}
+
+.ElementCardName p{
+    margin: 0;
+    padding: 0;
+}
+
+.ElementCard p{
+    font-size: 20px;
+    font-weight: 600;
+}

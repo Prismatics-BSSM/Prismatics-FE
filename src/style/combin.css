@@ -1,29 +1,38 @@
-.App{
-    background-color: #EAEFEF;
-    font-family: "Pretendard", sans-serif; 
+.Combin{
     display: flex;
     align-items: flex-start;
+    margin: auto;
     height: 832px;
 }
 
 .main{
-    padding: 10px 20px;
+    padding: 10px;
     margin-bottom: 0;
+}
+
+.search{
+    padding-bottom: 5px;
+    margin: 0;
 }
 
 .p-button {
     display: flex;
     align-items: center;           
     justify-content: space-between; 
-    padding: 50px 10px 20px 10px;    
-    width: 100%;
+    padding-top: 35px;
+    margin-bottom: 30px;
 }
 
-.combin-page .p-button {
+
+.Combin .p-button {
     justify-content: space-between;
 }
 
-.ElementTable-div p {
+.ElementTable-div-c{
+    margin: 0;
+}
+
+.ElementTable-div-c p {
     font-size: 25px;
     font-weight: bold;
     margin: 0;                    

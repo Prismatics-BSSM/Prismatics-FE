@@ -1,0 +1,83 @@
+/* InSpectrum.css */
+.Element {
+  animation: fadeIn 0.1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.Element{
+    padding: 40px 120px;
+}
+
+.elementp{
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.element-all{
+    position: relative;
+    display: flex;
+    padding: 40px;
+    width: 1140px;
+    height: 660px;
+    border-radius: 20px;
+    background-color: #FAFAFA;
+}
+
+.elementBox{
+    position: relative; 
+    display: flex;
+    align-items: center;
+    width: 1040px;
+    gap : 80px;
+    padding : 50px;
+}
+.in_{
+    margin: 40px;
+    flex-shrink: 0;
+}
+
+.Ques-icon {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.del-div{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 12px;
+    z-index: 101;
+}
+
