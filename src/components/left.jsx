@@ -15,13 +15,11 @@ export default function Left() {
             <div className="button-div">
             <div className='elT-div' onClick={() => navigate('/Main')}>
                 <ButtonelT></ButtonelT>
-                <button>
-                    주기율표</button>   
+                <button>주기율표</button>   
             </div>
             <div className='el-div' onClick={() => navigate('/Combin')}>
                 <Buttonel></Buttonel>
-                <button>
-                원소 조합</button>
+                <button>원소 조합</button>
             </div>
         </div>
         </div>

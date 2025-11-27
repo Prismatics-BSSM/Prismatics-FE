@@ -1,18 +1,30 @@
-.main{
-    padding: 10px 20px;
-    margin-bottom: 0;
-}
-
-.p-button {
+.Main{
     display: flex;
-    align-items: center;           
-    justify-content: space-between; 
-    padding: 50px 10px 10px 10px;    
-    width: 100%;
+    align-items: flex-start;
+    margin: auto;
+    height: 832px;
 }
 
-.combin-page .p-button {
+.main{
+    padding: 10px;
+    margin: 0;
+}
+
+.search{
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+.p-div {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    padding-top: 41px;
+    margin-bottom: 38px;
+}
+
+.ElementTable-div{
+    margin: 0;
 }
 
 .ElementTable-div p {
@@ -20,5 +32,5 @@
     font-weight: bold;
     margin: 0;                    
     padding: 0;                    
-    line-height: 1;                
+    line-height: 1;         
 }

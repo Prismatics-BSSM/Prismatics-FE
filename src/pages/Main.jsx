@@ -3,26 +3,49 @@ import TableData from '../components/tableData';
 import Search from '../components/Search';
 import '../style/Main.css'
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import calculateElectronConfig from "../utils/calculateElectronConfig";
+import elementData from '../components/elementData';
 
 export default function Main() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+  const [search, setSearch] = useState("");
+
+  const [selectedElement, setSelectedElement] = useState(null);
+
+  const shells = selectedElement
+  ? calculateElectronConfig(selectedElement.atomicNumber)
+  : [];
 
   return (
-    <div className='App'>
+    <div className='Main'>
       <Left></Left>
-        <div className='main'>
+      <div className='main'>
           <div className='search'>
-            <Search></Search>
+            <Search value={search} onChange={e => setSearch(e.target.value)}></Search>
           </div>
-
-
           <div className='ElementTable-div'>
-            <div className='p-button'>
+            <div className='p-div'>
               <p>주기율표</p>
             </div>
-            <TableData></TableData>
+            <TableData
+            page="main"
+            search={search}
+            onSelect={(elementInfo) => setSelectedElement(elementInfo)}
+            />
         </div>
       </div>
     </div>
   );
 }
+
+// export default function ElementPage() {
+//   const [search, setSearch] = useState('');
+
+//   return (
+//     <div>
+//       <SearchInput search={search} setSearch={setSearch} />
+//       <TableData page="main" search={search} />
+//     </div>
+//   );
+// }

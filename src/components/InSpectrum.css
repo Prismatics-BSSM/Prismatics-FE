@@ -1,0 +1,81 @@
+.Spect-css-all{
+    background-color: #F3F7F7;
+    width: 640px;
+    border-radius: 20px;
+    padding: 110px 30px;
+    position: relative;
+}
+
+.back-icon{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    margin-left: 8px;
+}
+
+.Spectrum-H{
+    margin: 0;
+    padding: 0;
+}
+
+.Spectrum{
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.Spectrum-div p{
+    font-size: 12px;
+    color: #68676787;
+
+    text-align: right;
+
+    margin: 0;
+    padding-top: 8px;
+}
+
+.Spectrum-P{
+    color: #8B8B8B;
+    font-size: 14px;
+    margin: 8px 0 14px 0;
+    font-weight: 400;
+}
+
+.Spectrum-P span{
+    font-weight: 600;
+}
+
+
+
+.Spectrum-Mean{
+    background-color: #FAFAFA;
+
+    height: 100px;
+    border-radius: 14px;
+
+    padding: 35px 45px;
+}
+
+.SpectrumM-T{
+    color: #8B8B8B;
+    font-size: 16px;
+    font-weight: 500;
+
+    margin: 0;
+    padding: 0;
+}
+
+.SpectrumM-P{
+    color: #A9A9A9;
+    font-size: 14px;
+    font-weight: 400;
+
+    margin-bottom: 30px;
+}
+
+.Spectrum-div{
+    margin: 0;
+    padding-bottom: 50px;
+}

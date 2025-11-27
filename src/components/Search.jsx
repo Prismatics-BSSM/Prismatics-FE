@@ -1,12 +1,14 @@
 import './search.css';
 
-export default function Search() {
+export default function Search({search, onChange}) {
   return (
     <div className='search-div'>
       <SearchIcon/>
       <input 
         type="text" 
         placeholder="입력하세요." 
+        value = {search}
+        onChange={onChange}
         className="search-input"/>
     </div>
   );

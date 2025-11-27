@@ -1,0 +1,42 @@
+.ElementList{
+    width: 200px;
+    height: 710px;
+    padding: 20px;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 14px;
+
+    background-color: #FAFAFA;
+    margin-right: 20px;
+}
+
+.check-H p{
+    font-size: 22px;
+    font-weight: 700;
+    padding: 5px 0 20px 0;
+    margin: 0;
+}
+
+.ElementList input{
+    border: 1px solid #C9C9C9;
+    margin-right: 4px;
+}
+
+.checkbox-div{
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+#check-all{
+    background-color: transparent;
+    border: 1px solid #C9C9C9;
+    margin-right: 4px;
+    padding: 0;
+}
+
+.CardContainer{
+    width: 80px;
+    gap: 30px;
+    display: flex;
+    text-align: center;
+}
