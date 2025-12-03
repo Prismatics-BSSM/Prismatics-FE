@@ -9,13 +9,14 @@ import { useLocation } from 'react-router-dom'
 
 
 export default function Combin() {
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const [selectedElements, setSelectedElements] = useState([]);  
 
   const location = useLocation();
-  const { symbol, atomicNumber } = location.state || {}; 
+  const { symbol, elementId } = location.state || {}; 
   const element = elementData.find(
-    el => el.symbol === symbol || el.atomicNumber === atomicNumber
+    el => el.symbol === symbol || el.elementId === elementId
   );
 
 
@@ -25,7 +26,7 @@ export default function Combin() {
       <Left></Left>
       <div className='main'>
         <div className='search'>
-          <Search></Search>
+          <Search search={search} onChange={(e) => setSearch(e.target.value)}></Search>
         </div>
 
         <div className='ElementTable-div-c'>
@@ -53,7 +54,8 @@ export default function Combin() {
 
           <TableData
             page="combin"
-            onSelect={(list) => setSelectedElements(list)}   
+            onSelect={(list) => setSelectedElements(list)}
+            search={search}   
           />
         </div>
       </div>

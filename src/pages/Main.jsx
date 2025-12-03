@@ -14,15 +14,16 @@ export default function Main() {
   const [selectedElement, setSelectedElement] = useState(null);
 
   const shells = selectedElement
-  ? calculateElectronConfig(selectedElement.atomicNumber)
+  ? calculateElectronConfig(selectedElement.elementId)
   : [];
+
 
   return (
     <div className='Main'>
       <Left></Left>
       <div className='main'>
           <div className='search'>
-            <Search value={search} onChange={e => setSearch(e.target.value)}></Search>
+            <Search search={search} onChange={(e) => setSearch(e.target.value)}></Search>
           </div>
           <div className='ElementTable-div'>
             <div className='p-div'>

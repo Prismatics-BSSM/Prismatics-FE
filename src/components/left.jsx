@@ -1,27 +1,61 @@
 import './left.css'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import CombinRecord from './CombinRecord';
 
 
 export default function Left() {
     const navigate = useNavigate();
+    const [isRecordOpen, setRecordOpen] = useState(false);
 
     return (
         <div className='Left'>
             <div className='log-pri'>
-            <img src='/icon.png' alt='log'></img>
-            <p className='title'>Prismatics</p>
+                <img src='/icon.png' alt='log'></img>
+                <p className='title'>Prismatics</p>
             </div>
 
             <div className="button-div">
-            <div className='elT-div' onClick={() => navigate('/Main')}>
-                <ButtonelT></ButtonelT>
-                <button>주기율표</button>   
+                <div className='elT-div' onClick={() => navigate('/Main')}>
+                    <ButtonelT></ButtonelT>
+                    <button>주기율표</button>   
+                </div>
+                <div className='el-div' onClick={() => navigate('/Combin')}>
+                    <Buttonel></Buttonel>
+                    <button>원소 조합</button>
+                </div>
             </div>
-            <div className='el-div' onClick={() => navigate('/Combin')}>
-                <Buttonel></Buttonel>
-                <button>원소 조합</button>
+            <div
+                className='ShowRecord'
+                onClick={() => {
+                    if (!isRecordOpen) setRecordOpen(true); 
+                }}
+            >
+                <div className='RecordP'>
+                    <p className='RecordT'>기록확인하기</p>
+                    <p className='RecordB'>원소 조합 기록을 확인해보세요.</p>
+                </div>
+
+                <div className='leftBack'>
+                    <IconBack />
+                </div>
+
+                {isRecordOpen && (
+                    <div
+                        className='RecordOpen'
+                        onClick={() => setRecordOpen(false)}  
+                    >
+                        <div
+                            className='RecordContent'
+                            onClick={e => e.stopPropagation()} 
+                        >
+                            <CombinRecord />
+                        </div>
+                    </div>
+                )}
             </div>
-        </div>
+
+
         </div>
     );
 }
@@ -57,6 +91,16 @@ function Buttonel() {
             <path d="M10.1614 0.5C10.3746 0.50007 10.6651 0.635615 11.0062 1.08691C11.3413 1.53038 11.6644 2.20418 11.9447 3.08105C12.5034 4.82929 12.8577 7.27565 12.8577 10C12.8577 12.7244 12.5034 15.1707 11.9447 16.9189C11.6644 17.7958 11.3413 18.4696 11.0062 18.9131C10.6651 19.3644 10.3746 19.4999 10.1614 19.5C9.94826 19.5 9.65706 19.3647 9.31575 18.9131C8.98062 18.4696 8.65756 17.7959 8.37727 16.9189C7.81851 15.1707 7.46516 12.7244 7.46516 10C7.46516 7.27565 7.81851 4.82929 8.37727 3.08105C8.65756 2.20408 8.98062 1.53041 9.31575 1.08691C9.65706 0.63525 9.94826 0.5 10.1614 0.5Z" stroke="#575B69"/>
             <path d="M17.8155 5.26329C17.9386 5.49186 17.9632 5.84789 17.7727 6.38003C17.5832 6.9089 17.2034 7.54064 16.6383 8.23527C15.5109 9.62114 13.7183 11.168 11.5227 12.5269C9.32696 13.8857 7.18029 14.7767 5.49678 15.1304C4.653 15.3076 3.9527 15.3443 3.43071 15.2557C2.90553 15.1665 2.63016 14.9657 2.50701 14.7372C2.38391 14.5086 2.35936 14.1527 2.5499 13.6204C2.73928 13.0915 3.11853 12.4591 3.68376 11.7643C4.81126 10.3784 6.6049 8.83195 8.80066 7.47308C10.9962 6.11438 13.1419 5.22293 14.8253 4.86924C15.6692 4.69196 16.3698 4.6561 16.8918 4.74474C17.4172 4.83399 17.6924 5.03473 17.8155 5.26329Z" stroke="#575B69"/>
             <path d="M17.8154 14.7371C17.6923 14.9655 17.4169 15.1664 16.8917 15.2556C16.3697 15.3442 15.6694 15.3075 14.8256 15.1302C13.1422 14.7766 10.9962 13.886 8.80051 12.5273C6.60474 11.1684 4.81158 9.62111 3.68408 8.23516C3.11898 7.54051 2.73915 6.90879 2.54976 6.37992C2.35926 5.84778 2.38383 5.49174 2.50687 5.26318C2.62997 5.03462 2.90526 4.83388 3.43057 4.74463C3.95261 4.65595 4.65314 4.69183 5.4971 4.86913C7.1806 5.22281 9.32684 6.11462 11.5226 7.47349C13.7181 8.83226 15.5112 10.3784 16.6387 11.7642C17.2038 12.4589 17.5831 13.0914 17.7725 13.6203C17.9631 14.1526 17.9385 14.5085 17.8154 14.7371Z" stroke="#575B69"/>
+            </svg>
+        </div>
+    );
+}
+
+function IconBack(){
+    return(
+        <div className='BackIcon'>
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.75 0.75L8.75 8.75L0.749999 16.75" stroke="#333446" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
         </div>
     );

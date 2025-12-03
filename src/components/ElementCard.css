@@ -24,10 +24,6 @@
     background-color: #e1e1e1;
 }
 
-.ElementCardName::selection{
-    background-color: #E9F3F3;
-}
-
 .ElementCardName p{
     margin: 0;
     padding: 0;
@@ -36,4 +32,8 @@
 .ElementCard p{
     font-size: 20px;
     font-weight: 600;
+}
+
+.ElementCard.selected .ElementCardName {
+    background-color: #EBF4F4; 
 }

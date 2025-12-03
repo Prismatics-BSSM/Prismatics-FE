@@ -37,20 +37,21 @@
 }
 
 .element-table td.filled:hover{
-  background-color: #7E8086;
+  background-color: #858586;
   color: #fafafa;
 }
 
 .element-table td.selected {
-  background-color: #7E8086; /* 원하는 색상 */
-  color: white; /* 필요 시 텍스트 색상 */
+  background-color: #9ca1b0; 
+  color: #fafafa;
 }
 
 .element-text {
   font-size: 14px;
 }
 
-.highlight {
-  background-color: rgba(255, 230, 0, 0.9); /* 노란 하이라이트 */
-  font-weight: 700;
+.element-table td.highlight {
+  background-color: #E9F3F3;
+
+  color: #858586;
 }

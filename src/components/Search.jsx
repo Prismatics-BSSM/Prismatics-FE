@@ -1,6 +1,7 @@
 import './search.css';
 
 export default function Search({search, onChange}) {
+
   return (
     <div className='search-div'>
       <SearchIcon/>

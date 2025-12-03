@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Element({page}) {
     const location = useLocation();
-    const { symbol, name, atomicNumber } = location.state;
+    const { symbol, name, elementId } = location.state;
     const [isModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ export default function Element({page}) {
         setSpectrumType(type);
         setMode("spectrum");
     }
+
 
     return (
         <div className='Element'>
@@ -47,8 +48,7 @@ export default function Element({page}) {
                 <div className='del-div'
                     onClick={() => {
                         navigate('/Main');
-                    }}
-                >
+                    }}>
                     <Del/>  
                 </div>
             </div>

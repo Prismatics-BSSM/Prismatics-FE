@@ -1,0 +1,56 @@
+.CombinRecord{
+    background-color: #ffffff;
+    width: auto;
+    height: auto;
+
+    padding: 20px;
+    
+    border-radius: 12px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ListAll{
+    display: grid;
+    gap: 20px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.CombinList{
+    display: flex;
+    align-items: center;
+
+    background-color: #F8F8F8;
+
+    border-radius: 12px;
+
+    padding: 10px;
+    margin: 0;
+}
+
+.CombinList:hover{
+    background-color: #E9F3F3;
+}
+
+.ListIcon{
+    margin-right: 8px;
+
+    padding: 0;
+}
+
+.CombinList p{
+    margin: 0;
+    padding: 0;
+}
+

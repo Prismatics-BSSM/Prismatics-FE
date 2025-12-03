@@ -53,6 +53,7 @@
     background-color: transparent;
     border: none;
     font-size: 18px;
+    font-weight: 600;
 }
 
 .el-div{
@@ -78,4 +79,79 @@
     background-color: transparent;
     border: none;
     font-size: 16px;
+    font-weight: 600;
+}
+
+.ShowRecord{
+    background-color: #F8F8F8;
+    border-radius: 12px;
+
+    height: auto;
+    width: auto;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    position: absolute;
+    bottom: 0;
+
+    margin-bottom: 30px;
+}
+
+.ShowRecord:hover{
+    background-color: #fff;
+}
+
+.RecoedP{
+    margin: 0;
+    padding: 0;
+}
+
+.RecordT{
+    font-size: 16px;
+    font-weight: 600;
+
+    margin: 0;
+    padding-bottom: 8px;
+}
+
+.RecordB{
+    font-size: 10px;
+    font-weight: 400;
+    color: #8B8B8B;
+
+    padding: 0;
+    margin: 0;
+}
+
+.RecordOpen{
+    align-items: center;
+}
+
+.RecordOpen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.RecordContent {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    width: 90%;
+    max-width: 420px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: fadeIn 0.2s ease-out;
 }

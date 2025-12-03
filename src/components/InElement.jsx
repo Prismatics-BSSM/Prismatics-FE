@@ -2,28 +2,43 @@ import { useLocation } from 'react-router-dom';
 import AtomModel2D from './AtomModel2D';
 import elementData from './elementData';
 import EnergyLevel from '../components/EnergyLevel';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 import './InElement.css';
 
 export default function ElementI({ onElectronMove = () => {} }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const location = useLocation();
-    const { symbol, name, atomicNumber } = location.state || {}; 
+    
+    const [elementData, setElementData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [selectedIndex, setSelectedIndex] = useState(1);
 
-    const element = elementData.find(el => el.symbol === symbol);
+    useEffect(() => {
+        axios.get("https://prismatics-api-xwmrfrdamq-du.a.run.app/elements/13")
+            .then(res => {
+                setElementData(res.data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, []);
 
-    if (!element) return <div>원소 정보가 없습니다.</div>;
+    if (loading) return <p>로딩 중...</p>;
+    if (!elementData) return <p>해당 원소 데이터를 찾을 수 없습니다.</p>;
               
     return (
         <div className='elementI'>
             <div className='elementP'>
-            <p className='elementM'>{element.name} 원자모형</p>
+            <p className='elementM'>{elementData.name} 원자모형</p>
             <p className='elementM-p'>전자를 움직여 에너지 준위 변화를 확인해보세요.</p>
             </div>
             <div className='element-'>
             <AtomModel2D 
-                atomicNumber={atomicNumber || element.atomicNumber} 
-                onElectronMove={onElectronMove} 
+                atomicNumber={elementData.elementId} 
+                onElectronMove={onElectronMove}
             />
             </div>
             <div className='Ques-icon'

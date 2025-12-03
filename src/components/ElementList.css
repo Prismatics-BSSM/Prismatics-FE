@@ -1,6 +1,7 @@
 .ElementList{
     width: 200px;
     height: 710px;
+
     padding: 20px;
     gap: 10px;
     flex-shrink: 0;
@@ -8,6 +9,9 @@
 
     background-color: #FAFAFA;
     margin-right: 20px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .check-H p{
@@ -23,6 +27,7 @@
 }
 
 .checkbox-div{
+    flex-shrink: 0;
     padding: 0;
     margin-bottom: 8px;
 }
@@ -35,8 +40,14 @@
 }
 
 .CardContainer{
-    width: 80px;
-    gap: 30px;
+    flex: 1 1 auto;        /* 남은 영역 모두 차지 */
+    overflow-y: auto;      /* 카드 영역만 스크롤 */
     display: flex;
-    text-align: center;
+    flex-wrap: wrap;       /* 카드 여러 줄 배치 */
+    gap: 10px;             /* 카드 간 간격 */
+}
+
+.Card{
+    width: calc(50% - 5px);
+    aspect-ratio: 1 / 1;
 }
