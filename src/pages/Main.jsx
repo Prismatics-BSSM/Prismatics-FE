@@ -15,7 +15,7 @@ export default function Main() {
     }
   }, [userId, refreshUserId]);
 
-  console.log(userId);
+  console.log(userId); 
   return (
     <div className='Main'>
       <Left></Left>
