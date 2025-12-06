@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 
 const calculateElectronConfig = (atomicNumber) => {
   const maxElectrons = [2, 8, 18, 32, 32, 18, 8]; 
@@ -7,40 +7,37 @@ const calculateElectronConfig = (atomicNumber) => {
   
   for (let i = 0; i < maxElectrons.length && remaining > 0; i++) {
     const count = Math.min(remaining, maxElectrons[i]);
-      shells.push(count);
-      remaining -= count;
-    }
+    shells.push(count);
+    remaining -= count;
+  }
 
-    return shells;
-  };
+  return shells;
+};
 
-  // 스펙트럼 정보 있는 원소 번호
-  const SPECTRUM_AVAILABLE = [
-    1, 2, 3, 4, 6, 7, 8, 9, 10, 11,
-    12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-    32, 35, 36, 37, 38, 39, 42, 43, 44, 45,
-    47, 48, 49, 50, 53, 54, 55, 56, 57, 58,
-    60, 62, 63, 64, 66, 67, 68, 69, 70, 71,
-    72, 73, 74, 77, 78, 79, 80, 81, 82, 83,
-    87, 88, 89
-  ];
+// 스펙트럼 정보 있는 원소 번호
+const SPECTRUM_AVAILABLE = [
+  1, 2, 3, 4, 6, 7, 8, 9, 10, 11,
+  12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+  22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+  32, 35, 36, 37, 38, 39, 42, 43, 44, 45,
+  47, 48, 49, 50, 53, 54, 55, 56, 57, 58,
+  60, 62, 63, 64, 66, 67, 68, 69, 70, 71,
+  72, 73, 74, 77, 78, 79, 80, 81, 82, 83,
+  87, 88, 89
+];
 
+export default function AtomModel2D({ atomicNumber, onElectronMove = () => {}, size = 400, disableMovement = false }) {
+  const canvasRef = useRef(null);
+  const electronPositionsRef = useRef([]); 
+  const [draggingIndex, setDraggingIndex] = useState(null);
+  const initialShellIndexRef = useRef(null);
+  const rafRef = useRef(null); 
 
-  export default function AtomModel2D({ atomicNumber, onElectronMove = () => {}, size = 400, disableMovement = false }) {
-    const canvasRef = useRef(null);
-    const [electronPositions, setElectronPositions] = useState([]);
-    const electronPositionsRef = useRef([]); 
-    const [draggingIndex, setDraggingIndex] = useState(null);
-    const initialShellIndexRef = useRef(null);
-    const rafRef = useRef(null); 
+  const shells = useMemo(() => calculateElectronConfig(atomicNumber), [atomicNumber]);
+  const scale = size / 400;
+  const center = size / 2;
 
-    const shells = calculateElectronConfig(atomicNumber);
-    const scale = size / 400;
-    const center = size / 2;
-
-
-    useEffect(() => {
+  useEffect(() => {
     if (!shells || shells.length === 0) return;
     const positions = [];
     const startRadius = 30;
@@ -56,10 +53,8 @@ const calculateElectronConfig = (atomicNumber) => {
         });
       }
     });
-    setElectronPositions(positions);
     electronPositionsRef.current = positions;
-  }, [atomicNumber, scale, center]);
-
+  }, [atomicNumber, scale, center, shells]); 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -124,30 +119,24 @@ const calculateElectronConfig = (atomicNumber) => {
   };
 
   const handleMouseDown = (e) => {
-  if (!SPECTRUM_AVAILABLE.includes(atomicNumber)) {
-    console.log("⚠️ 스펙트럼 정보 없음 → 전자 이동 비활성화");
-    return;
-  }
-  if (disableMovement || !SPECTRUM_AVAILABLE.includes(atomicNumber)) {
-    console.log("⚠️ 전자 이동 비활성화");
-    return;
-  }
+    if (disableMovement || !SPECTRUM_AVAILABLE.includes(atomicNumber)) {
+      return;
+    }
 
-  const rect = canvasRef.current.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  const index = electronPositionsRef.current.findIndex(
-    pos => Math.hypot(pos.x - x, pos.y - y) < 10 * scale
-  );
-  if (index !== -1) {
-    setDraggingIndex(index);
-    const pos = electronPositionsRef.current[index];
-    const radius = Math.hypot(pos.x - center, pos.y - center);
-    initialShellIndexRef.current = getShellIndexFromRadius(radius);
-  }
-};
-
+    const index = electronPositionsRef.current.findIndex(
+      pos => Math.hypot(pos.x - x, pos.y - y) < 10 * scale
+    );
+    if (index !== -1) {
+      setDraggingIndex(index);
+      const pos = electronPositionsRef.current[index];
+      const radius = Math.hypot(pos.x - center, pos.y - center);
+      initialShellIndexRef.current = getShellIndexFromRadius(radius);
+    }
+  };
 
   const handleMouseMove = (e) => {
     if (draggingIndex === null) return;
@@ -172,28 +161,17 @@ const calculateElectronConfig = (atomicNumber) => {
     const shellGap = 25;
     const initialRadius = (startRadius + initialShellIndexRef.current * shellGap) * scale;
 
-    console.log('🔍 드래그 종료:', {
-      initialShell: initialShellIndexRef.current,
-      currRadius,
-      initialRadius,
-      diff: currRadius - initialRadius
-    });
-
     if (initialShellIndexRef.current !== null) {
       const radiusDiff = currRadius - initialRadius;
       const threshold = 25 * scale;
       
-      // (방출 스펙트럼)
+      // 방출 스펙트럼
       if (radiusDiff < -threshold) {
-        console.log('✅ in 이벤트 발생 (방출)');
         onElectronMove("in");
       }
-      // (흡수 스펙트럼)
+      // 흡수 스펙트럼
       else if (radiusDiff > threshold) {
-        console.log('✅ out 이벤트 발생 (흡수)');
         onElectronMove("out");
-      } else {
-        console.log('❌ 이동 거리 부족');
       }
     }
 

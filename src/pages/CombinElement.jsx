@@ -12,7 +12,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 export default function CombinElement() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { elements: rawElements = [], record, recordIndex } = location.state || {};
+  const { elements: rawElements = [], record } = location.state || {};
 
   const { selectedElementIds, setSelectedElementIds } = useElementStore();
   const [elementObjects, setElementObjects] = useState([]);

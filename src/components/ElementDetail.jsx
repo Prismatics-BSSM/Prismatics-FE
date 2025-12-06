@@ -54,7 +54,7 @@ export default function ElementDetail({ elements }) {
     };
 
     fetchData();
-  }, [elements.join(',')]);
+  }, [elements]);
 
   if (loading) return <p className='DetailLoadAError'>로딩 중...</p>;
   if (!elementDetails || elementDetails.length === 0)

@@ -7,7 +7,6 @@ import InSpectrum from "./components/InSpectrum.jsx";
 import InElement from "./components/InElement.jsx";
 import { ElementProvider } from './context/ElementStore';
 import { UserIdProvider } from "./context/UserIdContext.jsx";
-import './style/combin.css';
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import Left from '../components/left';
 import TableData from '../components/tableData';
 import Search from '../components/Search';
-import '../style/combin.css'
+import '../style/Combin.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 

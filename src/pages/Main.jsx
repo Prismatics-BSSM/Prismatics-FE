@@ -2,16 +2,10 @@ import Left from '../components/left';
 import TableData from '../components/tableData';
 import Search from '../components/Search';
 import '../style/Main.css'
-import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import calculateElectronConfig from "../utils/calculateElectronConfig";
 
 export default function Main() {
   const [search, setSearch] = useState("");
-
-  const [selectedElement, setSelectedElement] = useState(null);
-
-
 
   return (
     <div className='Main'>
@@ -27,7 +21,6 @@ export default function Main() {
             <TableData
             page="main"
             search={search}
-            onSelect={(elementInfo) => setSelectedElement(elementInfo)}
             />
         </div>
       </div>

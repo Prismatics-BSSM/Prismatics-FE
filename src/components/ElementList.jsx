@@ -1,13 +1,20 @@
 import './ElementList.css';
 import ElementCard from './ElementCard';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 export default function ElementList({ elements, onSelectionChange }) {
-  const validElements = elements?.filter(el => el && el.symbol) || [];
+  const validElements = useMemo(() => {
+    return elements?.filter(el => el && el.symbol) || [];
+  }, [elements]);
 
   const [selectedElements, setSelectedElements] = useState([]);
   
   const prevElementsRef = useRef([]);
+  const onSelectionChangeRef = useRef(onSelectionChange);
+
+  useEffect(() => {
+    onSelectionChangeRef.current = onSelectionChange;
+  }, [onSelectionChange]);
 
   useEffect(() => {
     const prev = prevElementsRef.current;
@@ -22,13 +29,13 @@ export default function ElementList({ elements, onSelectionChange }) {
       const allIds = validElements.map(el => el.elementId);
 
       setSelectedElements(allSymbols);
-      onSelectionChange?.(allIds);
+      onSelectionChangeRef.current?.(allIds);
 
       prevElementsRef.current = next;
     }
   }, [validElements]);
 
-  const toggleSelect = (symbol) => {
+  const toggleSelect = useCallback((symbol) => {
     setSelectedElements(prev => {
       const newSelected = prev.includes(symbol)
         ? prev.filter(s => s !== symbol)
@@ -38,24 +45,24 @@ export default function ElementList({ elements, onSelectionChange }) {
         .map(sym => validElements.find(el => el.symbol === sym)?.elementId)
         .filter(Boolean);
 
-      onSelectionChange?.(selectedIds);
+      onSelectionChangeRef.current?.(selectedIds);
 
       return newSelected;
     });
-  };
+  }, [validElements]);
 
-  const handleSelectAll = (e) => {
+  const handleSelectAll = useCallback((e) => {
     if (e.target.checked) {
       const allSymbols = validElements.map(el => el.symbol);
       const allIds = validElements.map(el => el.elementId);
       
       setSelectedElements(allSymbols);
-      onSelectionChange?.(allIds);
+      onSelectionChangeRef.current?.(allIds);
     } else {
       setSelectedElements([]);
-      onSelectionChange?.([]);
+      onSelectionChangeRef.current?.([]);
     }
-  };
+  }, [validElements]);
 
   if (validElements.length === 0) return <p>선택된 원소가 없습니다.</p>;
 
