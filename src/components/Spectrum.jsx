@@ -1,6 +1,4 @@
 import colorMapper from "../utils/colorMapper";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 // mode: "absorption"(흡수) | "emission"(방출)
 

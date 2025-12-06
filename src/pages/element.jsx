@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import InElement from '../components/InElement';
 import InSpectrum from '../components/InSpectrum';
 import InElementP from '../components/InElementP'
-import EnergyLevel from '../components/EnergyLevel';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 

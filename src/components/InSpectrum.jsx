@@ -1,7 +1,4 @@
-import { useLocation } from "react-router-dom";
-import elementData from "./elementData";
 import './InSpectrum.css';
-import { useNavigate } from "react-router-dom";
 import Spectrum from "./Spectrum";
 import { useState, useEffect } from "react";
 import axios from "axios";

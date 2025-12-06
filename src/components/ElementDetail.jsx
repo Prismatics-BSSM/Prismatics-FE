@@ -64,7 +64,6 @@ export default function ElementDetail({ elements }) {
     const el = elementDetails[0];
     return (
       <div className='ElementDetail'>
-        {/* ✅ 상단 영역 wrapper 추가 */}
         <div className='detail-top-section'>
           <div className='DetailCard single-element'>
             <p className='DElementName'>{el.name}</p>
@@ -97,7 +96,6 @@ export default function ElementDetail({ elements }) {
 
   return (
     <div className='ElementDetail'>
-      {/* ✅ 상단 영역 wrapper 추가 */}
       <div className='detail-top-section'>
         <div className='ElementList-Multiple'>
           {elementDetails.map(el => (

@@ -157,7 +157,6 @@ export default function TableData({ page, search, onSelect }) {
                     onClick={() => {
                       if (!cell) return;
                       
-                      // ✅ 스펙트럼 정보 없으면 경고 후 리턴
                       if (!hasSpectrum) {
                         alert(`${elementInfo.name} (${cell})은(는) 스펙트럼 정보가 없습니다.`);
                         return;

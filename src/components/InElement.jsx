@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
 import AtomModel2D from './AtomModel2D';
-import elementData from './elementData';
 import EnergyLevel from '../components/EnergyLevel';
 import { useState, useEffect } from "react";
 import axios from 'axios';

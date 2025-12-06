@@ -4,8 +4,6 @@ import Search from '../components/Search';
 import '../style/combin.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import elementData from '../components/elementData';
-import { useLocation } from 'react-router-dom' 
 
 
 export default function Combin() {
