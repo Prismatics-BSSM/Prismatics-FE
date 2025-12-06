@@ -6,7 +6,7 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function TableData({ page, search, onSelect }) {
-  const [selectedElement1, setSelectedElement1] = useState(null);
+  const [selectedElement1] = useState(null);
   const [selectedElement2, setSelectedElement2] = useState([]);
   const [elementsData, setElementsData] = useState([]);
 

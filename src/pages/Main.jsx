@@ -7,14 +7,10 @@ import { useState } from "react";
 import calculateElectronConfig from "../utils/calculateElectronConfig";
 
 export default function Main() {
-  const navigate = useNavigate(); 
   const [search, setSearch] = useState("");
 
   const [selectedElement, setSelectedElement] = useState(null);
 
-  const shells = selectedElement
-  ? calculateElectronConfig(selectedElement.elementId)
-  : [];
 
 
   return (

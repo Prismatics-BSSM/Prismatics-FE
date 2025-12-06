@@ -8,9 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Element({page}) {
     const location = useLocation();
-    const { symbol, name, elementId } = location.state;
+    const { elementId } = location.state;
 
-    const [isModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
 
     const [mode, setMode] = useState("element"); 

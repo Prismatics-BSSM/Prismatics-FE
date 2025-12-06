@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 const UserIdContext = createContext();
@@ -9,24 +9,21 @@ export function UserIdProvider({ children }) {
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const refreshUserId = async () => {
-  try {
-    const res = await axios.post(
-      `${API_URL}/auth`
-    );
-    const newUserId = res.data.userId;
-    setUserId(newUserId);
-    localStorage.setItem("userId", newUserId);
-    console.log("✔ userId 갱신 완료:", newUserId);
-    return newUserId;
-  } catch (err) {
-    console.error("userId 갱신 실패:", err);
-    throw err;
-  }
-};
+  const refreshUserId = useCallback(async () => {
+    try {
+      const res = await axios.post(`${API_URL}/auth`);
+      const newUserId = res.data.userId;
+      setUserId(newUserId);
+      localStorage.setItem("userId", newUserId);
+      console.log("✔ userId 갱신 완료:", newUserId);
+      return newUserId;
+    } catch (err) {
+      console.error("userId 갱신 실패:", err);
+      throw err;
+    }
+  }, []); 
 
-
-  const fetchRecords = async (currentUserId) => {
+  const fetchRecords = useCallback(async (currentUserId) => {
     if (!currentUserId) return;
     setLoading(true);
 
@@ -67,12 +64,12 @@ export function UserIdProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [refreshUserId]); 
 
   useEffect(() => {
     if (!userId) return;
     fetchRecords(userId);
-  }, [userId]);
+  }, [userId, fetchRecords]); 
 
   return (
     <UserIdContext.Provider
