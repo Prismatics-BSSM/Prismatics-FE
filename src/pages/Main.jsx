@@ -2,11 +2,20 @@ import Left from '../components/left';
 import TableData from '../components/tableData';
 import Search from '../components/Search';
 import '../style/Main.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useUserId } from "../context/UserIdContext";
 
 export default function Main() {
   const [search, setSearch] = useState("");
+  const { userId, refreshUserId } = useUserId();
 
+  useEffect(() => {
+    if (!userId) {
+      refreshUserId();
+    }
+  }, [userId, refreshUserId]);
+
+  console.log(userId);
   return (
     <div className='Main'>
       <Left></Left>
