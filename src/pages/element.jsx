@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Element({page}) {
     const location = useLocation();
     const { symbol, name, elementId } = location.state;
+
     const [isModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -21,22 +22,24 @@ export default function Element({page}) {
         setMode("spectrum");
     }
 
-
     return (
         <div className='Element'>
             <div className='element-all'>
                 <div className='elementBox'>
                     <div className='elementp'>
-                        <InElementP/>
+                        <InElementP  elementId={elementId} />
                     </div>
                     <div className='in_'>
                         {mode === "element" && (
-                            <InElement onElectronMove={handleElectronMove} />
+                            <InElement 
+                             elementId={elementId} 
+                             onElectronMove={handleElectronMove} />
                         )}
                         
                         {mode === "spectrum" && spectrumType && (
                             <InSpectrum 
                                 type={spectrumType} 
+                                elementId={elementId}
                                 onClose={() => {
                                     setMode("element");
                                     setSpectrumType(null);

@@ -11,15 +11,7 @@ import { useLocation } from 'react-router-dom'
 export default function Combin() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const [selectedElements, setSelectedElements] = useState([]);  
-
-  const location = useLocation();
-  const { symbol, elementId } = location.state || {}; 
-  const element = elementData.find(
-    el => el.symbol === symbol || el.elementId === elementId
-  );
-
-
+  const [selectedElements, setSelectedElements] = useState([]); 
 
   return (
     <div className='Combin'>

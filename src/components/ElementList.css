@@ -40,11 +40,10 @@
 }
 
 .CardContainer{
-    flex: 1 1 auto;        /* 남은 영역 모두 차지 */
-    overflow-y: auto;      /* 카드 영역만 스크롤 */
+    overflow-y: auto;      
     display: flex;
-    flex-wrap: wrap;       /* 카드 여러 줄 배치 */
-    gap: 10px;             /* 카드 간 간격 */
+    flex-wrap: wrap;      
+    gap: 10px;
 }
 
 .Card{

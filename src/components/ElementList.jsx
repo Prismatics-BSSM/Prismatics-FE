@@ -1,31 +1,63 @@
 import './ElementList.css';
-import elementData from './elementData.js';
 import ElementCard from './ElementCard';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-export default function ElementList({ elements }) {
+export default function ElementList({ elements, onSelectionChange }) {
+  const validElements = elements?.filter(el => el && el.symbol) || [];
 
   const [selectedElements, setSelectedElements] = useState([]);
+  
+  const prevElementsRef = useRef([]);
 
-  // 개별 카드 클릭
+  useEffect(() => {
+    const prev = prevElementsRef.current;
+    const next = validElements.map(el => el.elementId);
+
+    const isSame =
+      prev.length === next.length &&
+      prev.every((v, i) => v === next[i]);
+
+    if (!isSame && next.length > 0) {
+      const allSymbols = validElements.map(el => el.symbol);
+      const allIds = validElements.map(el => el.elementId);
+
+      setSelectedElements(allSymbols);
+      onSelectionChange?.(allIds);
+
+      prevElementsRef.current = next;
+    }
+  }, [validElements]);
+
   const toggleSelect = (symbol) => {
-    setSelectedElements(prev => 
-      prev.includes(symbol)
-        ? prev.filter(s => s !== symbol)  // 해제
-        : [...prev, symbol]               // 선택
-    );
+    setSelectedElements(prev => {
+      const newSelected = prev.includes(symbol)
+        ? prev.filter(s => s !== symbol)
+        : [...prev, symbol];
+
+      const selectedIds = newSelected
+        .map(sym => validElements.find(el => el.symbol === sym)?.elementId)
+        .filter(Boolean);
+
+      onSelectionChange?.(selectedIds);
+
+      return newSelected;
+    });
   };
 
-  // 전체 선택 / 해제
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedElements(elements.map(el => el.symbol)); // 전체 선택
+      const allSymbols = validElements.map(el => el.symbol);
+      const allIds = validElements.map(el => el.elementId);
+      
+      setSelectedElements(allSymbols);
+      onSelectionChange?.(allIds);
     } else {
-      setSelectedElements([]); // 전체 해제
+      setSelectedElements([]);
+      onSelectionChange?.([]);
     }
   };
 
-  if (!elements || elements.length === 0) return <p>선택된 원소가 없습니다.</p>;
+  if (validElements.length === 0) return <p>선택된 원소가 없습니다.</p>;
 
   return (
     <div className='ElementList'>
@@ -37,27 +69,25 @@ export default function ElementList({ elements }) {
         <input
           type="checkbox"
           id='check-all'
-          checked={selectedElements.length === elements.length}
+          checked={
+            selectedElements.length === validElements.length &&
+            validElements.length > 0
+          }
           onChange={handleSelectAll}
         />
         <label htmlFor="check-all">전체 선택</label>
       </div>
 
       <div className='CardContainer'>
-        {elements.map((el, idx) => {
-          const elementInfo = elementData.find(e => e.symbol === el.symbol);
-          if (!elementInfo) return null;
-
-          return (
-            <div key={idx} className='Card'>
-              <ElementCard
-                element={elementInfo}
-                selected={selectedElements.includes(elementInfo.symbol)}
-                onClick={() => toggleSelect(elementInfo.symbol)}
-              />
-            </div>
-          );
-        })}
+        {validElements.map((el, idx) => (
+          <div key={idx} className='Card'>
+            <ElementCard
+              element={el}
+              selected={selectedElements.includes(el.symbol)}
+              onClick={() => toggleSelect(el.symbol)}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

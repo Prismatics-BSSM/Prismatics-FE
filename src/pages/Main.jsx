@@ -5,7 +5,6 @@ import '../style/Main.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import calculateElectronConfig from "../utils/calculateElectronConfig";
-import elementData from '../components/elementData';
 
 export default function Main() {
   const navigate = useNavigate(); 
@@ -39,14 +38,3 @@ export default function Main() {
     </div>
   );
 }
-
-// export default function ElementPage() {
-//   const [search, setSearch] = useState('');
-
-//   return (
-//     <div>
-//       <SearchInput search={search} setSearch={setSearch} />
-//       <TableData page="main" search={search} />
-//     </div>
-//   );
-// }

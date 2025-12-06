@@ -6,32 +6,39 @@ import Spectrum from "./Spectrum";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function InSpectrum({ type, onClose }) {
+const API_URL = process.env.REACT_APP_API_URL;
+
+export default function InSpectrum({ type, elementId, onClose }) {
   const [waves, setWaves] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [elementData, setElementData] = useState();
 
-
-
   useEffect(() => {
     setLoading(true);
 
-    const spectrumAPI =  axios.get("https://prismatics-api-xwmrfrdamq-du.a.run.app/elements/spectrums?ids=1")
+    const spectrumAPI = axios.get(
+        `${API_URL}/elements/spectrums?ids=${elementId}`
+    );
 
-    const elementAPI =  axios.get("https://prismatics-api-xwmrfrdamq-du.a.run.app/elements/13")
+    const elementAPI = axios.get(
+        `${API_URL}/elements/${elementId}`
+    );
 
     Promise.all([spectrumAPI, elementAPI])
-    .then(([wavesReq, elementReq]) => {
-          setWaves(wavesReq.data.waves);
-          setElementData(elementReq.data);
-          setLoading(false);
+        .then(([wavesReq, elementReq]) => {
+            const fetchedWaves = wavesReq.data.waves || [];
+            setWaves(fetchedWaves);
+            setElementData(elementReq.data);
+            setLoading(false);
         })
         .catch(err => {
-          console.error(err);
-          setLoading(false);
+            console.error(err);
+            setLoading(false);
         });
-  }, [])
+  }, [elementId]);
+
+
   if (loading) return <p>로딩 중...</p>;
   else console.log(elementData);
 
@@ -44,8 +51,6 @@ export default function InSpectrum({ type, onClose }) {
 }
 
 function EmissionSpectrum({ onClose, waves, name}){
-  const navigate = useNavigate();
-  const location = useLocation();
 
   return(
     <div className="Spect-css-all">

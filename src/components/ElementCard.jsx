@@ -1,8 +1,4 @@
-import { useLayoutEffect } from 'react';
 import './ElementCard.css';
-import elementData from './elementData.js';
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
 
 export default function ElementCard({ element, selected, onClick }) {
   if (!element) return null;

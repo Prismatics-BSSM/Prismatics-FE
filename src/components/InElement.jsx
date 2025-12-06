@@ -6,7 +6,9 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import './InElement.css';
 
-export default function ElementI({ onElectronMove = () => {} }) {
+const API_URL = process.env.REACT_APP_API_URL;
+
+export default function ElementI({  elementId, onElectronMove = () => {} }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const location = useLocation();
     
@@ -15,7 +17,7 @@ export default function ElementI({ onElectronMove = () => {} }) {
     const [selectedIndex, setSelectedIndex] = useState(1);
 
     useEffect(() => {
-        axios.get("https://prismatics-api-xwmrfrdamq-du.a.run.app/elements/13")
+        axios.get(`${API_URL}/elements/${elementId}`)
             .then(res => {
                 setElementData(res.data);
                 setLoading(false);
@@ -24,7 +26,7 @@ export default function ElementI({ onElectronMove = () => {} }) {
                 console.error(err);
                 setLoading(false);
             });
-    }, []);
+    }, [elementId]);
 
     if (loading) return <p>로딩 중...</p>;
     if (!elementData) return <p>해당 원소 데이터를 찾을 수 없습니다.</p>;

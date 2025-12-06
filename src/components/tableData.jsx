@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default function TableData({ page, search, onSelect }) {
   const [selectedElement1, setSelectedElement1] = useState(null);
   const [selectedElement2, setSelectedElement2] = useState([]);
@@ -10,14 +12,13 @@ export default function TableData({ page, search, onSelect }) {
 
   const navigate = useNavigate();
 
-  // API에서 원소 데이터 가져오기
   useEffect(() => {
     const fetchElements = async () => {
       try {
         const promises = [];
         for (let i = 1; i <= 118; i++) {
           promises.push(
-            axios.get(`https://prismatics-api-xwmrfrdamq-du.a.run.app/elements/${i}`)
+            axios.get(`${API_URL}/elements/${i}`)
           );
         }
         const responses = await Promise.all(promises);
@@ -36,12 +37,12 @@ export default function TableData({ page, search, onSelect }) {
     
     const searchLower = search.toLowerCase().trim();
     
-    // 영어 기호로 검색 (테이블에서 직접)
+    // 영어 검색
     if (cell.toLowerCase().includes(searchLower)) {
       return true;
     }
     
-    // 한글 이름으로 검색 (백엔드 데이터에서)
+    // 한글 검색
     const element = elementsData.find(el => el.symbol === cell);
     if (element && element.name) {
       return element.name.includes(search.trim());
@@ -63,7 +64,18 @@ export default function TableData({ page, search, onSelect }) {
     [null,null,"Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr", null]
   ];
 
-  // ⭐ main 페이지 테이블
+  const SPECTRUM_AVAILABLE = [
+    1, 2, 3, 4, 6, 7, 8, 9, 10, 11,
+    12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+    32, 35, 36, 37, 38, 39, 42, 43, 44, 45,
+    47, 48, 49, 50, 53, 54, 55, 56, 57, 58,
+    60, 62, 63, 64, 66, 67, 68, 69, 70, 71,
+    72, 73, 74, 77, 78, 79, 80, 81, 82, 83,
+    87, 88, 89
+  ];
+
+  // main 페이지 테이블
   if (page === "main") {
     return (
       <table className="element-container">
@@ -86,19 +98,23 @@ export default function TableData({ page, search, onSelect }) {
                       ${(rowIndex === 5 && cellIndex === 2) || (rowIndex === 6 && cellIndex === 2) ? "ot" : ""}
                       ${matched ? "highlight" : ""}
                     `}
-                    onClick={() => {
-                      if (!cell) return;
-                      const elementInfo = elementsData.find(el => el.symbol === cell);
-                      if (onSelect) onSelect(elementInfo);
+                   onClick={() => {
+                    if (!cell) return;
 
-                      navigate('/Element', {
-                        state: {
-                          symbol: cell,
-                          name: elementInfo?.name,
-                          elementId: elementInfo?.elementId 
-                        }
-                      });
-                    }}
+                    const elementInfo = elementsData.find(el => el.symbol === cell);
+                    if (!elementInfo) return;
+
+                    if (onSelect) onSelect(elementInfo);
+
+                    navigate('/Element', {
+                      state: {
+                        elementId: elementInfo.elementId,
+                        symbol: elementInfo.symbol,
+                        name: elementInfo.name
+                      }
+                    });
+                  }}
+
                   >
                     {cell && <span className="element-text">{cell}</span>}
                   </td>
@@ -124,6 +140,9 @@ export default function TableData({ page, search, onSelect }) {
                   el => el.row === rowIndex && el.col === cellIndex
                 );
 
+                const elementInfo = cell ? elementsData.find(el => el.symbol === cell) : null;
+                const hasSpectrum = elementInfo ? SPECTRUM_AVAILABLE.includes(elementInfo.elementId) : false;
+
                 return (
                   <td
                     key={cellIndex}
@@ -133,9 +152,16 @@ export default function TableData({ page, search, onSelect }) {
                       ${isSelected2 ? "selected" : ""}
                       ${(rowIndex === 5 && cellIndex === 2) || (rowIndex === 6 && cellIndex === 2) ? "ot" : ""}
                       ${matched ? "highlight" : ""}
+                      ${cell && !hasSpectrum ? "no-spectrum" : ""}
                     `}
                     onClick={() => {
                       if (!cell) return;
+                      
+                      // ✅ 스펙트럼 정보 없으면 경고 후 리턴
+                      if (!hasSpectrum) {
+                        alert(`${elementInfo.name} (${cell})은(는) 스펙트럼 정보가 없습니다.`);
+                        return;
+                      }
                       
                       const position = { row: rowIndex, col: cellIndex };
                       const isAlreadySelected = selectedElement2.some(
@@ -149,11 +175,13 @@ export default function TableData({ page, search, onSelect }) {
                       setSelectedElement2(newSelected);
                       
                       if (typeof onSelect === "function") {
-                        const selectedElements = newSelected.map(pos => {
-                          const symbol = table[pos.row][pos.col];
-                          return elementsData.find(el => el.symbol === symbol);
-                        });
-                        onSelect(selectedElements);
+                        const symbols = newSelected.map(pos => table[pos.row][pos.col]);
+                        const selectedElementsData = symbols
+                          .map(symbol => elementsData.find(el => el.symbol === symbol))
+                          .filter(el => el !== undefined);
+                        
+                        console.log("선택된 원소들:", selectedElementsData); 
+                        onSelect(selectedElementsData);
                       }
                     }}
                   >

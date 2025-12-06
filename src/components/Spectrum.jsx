@@ -12,34 +12,15 @@ function Spectrum({ wavelengths = [], mode = "emission" }) {
   const total = end - start + 1;
   const barWidth = 2;
 
-  const [waves, setWaves] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios.get("https://prismatics-api-xwmrfrdamq-du.a.run.app/elements/spectrums?ids=1")
-      .then(res => {
-        setWaves(res.data.waves);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("API 요청 에러:", err);
-        setLoading(false);
-      });
-  }, []);
-
-  const wavesToUse = wavelengths.length ? wavelengths : waves;
-
-  if (loading) return <p>로딩 중...</p>;
-
   return (
     <svg width={width} height={height} style={{ borderRadius: "8px" }}>
       {Array.from({ length: total }).map((_, idx) => {
         const wl = start + idx;
         let color;
         if (mode === "emission") {
-          color = waves.includes(wl) ? colorMapper[wl] : "#000";
+          color = wavelengths.includes(wl) ? colorMapper[wl] : "#000";
         } else if (mode === "absorption") {
-          color = waves.includes(wl) ? "#000" : colorMapper[wl];
+          color = wavelengths.includes(wl) ? "#000" : colorMapper[wl];
         }
         return (
           <rect

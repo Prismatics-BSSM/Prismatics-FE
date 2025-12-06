@@ -55,3 +55,14 @@
 
   color: #858586;
 }
+
+.element-table td.filled.no-spectrum {
+  background-color: #424654 !important;
+  cursor: not-allowed !important;
+  color: #888 !important;
+}
+
+.element-table td.filled.no-spectrum:hover {
+  background-color: #3d3f45 !important;
+  color: #888 !important;
+}
